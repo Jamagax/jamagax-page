@@ -76,6 +76,7 @@ function createAdvancedJourney() {
         { type: 'octa', color: PARAMS.colors.gold, id: 'dimension-n' },
         { type: 'dodeca', color: PARAMS.colors.cyan, id: 'enciclopedia' },
         { type: 'box', color: PARAMS.colors.purple, id: 'lab' },
+        { type: 'lattice', color: PARAMS.colors.gold, id: 'lattice-agent' },
         { type: 'points', color: PARAMS.colors.cyan, id: 'repos' }
     ];
 
@@ -103,16 +104,126 @@ function createAdvancedJourney() {
             case 'octa': mesh = new THREE.Mesh(new THREE.OctahedronGeometry(2), shaderMat); break;
             case 'dodeca': mesh = new THREE.Mesh(new THREE.DodecahedronGeometry(2), shaderMat); break;
             case 'box': mesh = new THREE.Mesh(new THREE.BoxGeometry(2.5, 2.5, 2.5), shaderMat); break;
+            case 'lattice':
+                mesh = createLatticeGrid(2, 4, data.color);
+                break;
             case 'points': mesh = new THREE.Mesh(new THREE.SphereGeometry(2, 6, 6), shaderMat); break;
         }
 
         group.add(mesh);
-        sectionMeshes.push({ mesh, material: shaderMat });
+        sectionMeshes.push({ mesh, material: shaderMat || mesh.material });
         mainGroup.add(group);
     });
 
     createNebula();
 }
+
+function createLatticeGrid(size, divisions, color) {
+    const group = new THREE.Group();
+    const material = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.5 });
+    const step = size / divisions;
+
+    for (let i = -size / 2; i <= size / 2; i += step) {
+        for (let j = -size / 2; j <= size / 2; j += step) {
+            // Lines along X
+            const geoX = new THREE.BufferGeometry().setFromPoints([
+                new THREE.Vector3(-size / 2, i, j),
+                new THREE.Vector3(size / 2, i, j)
+            ]);
+            group.add(new THREE.Line(geoX, material));
+
+            // Lines along Y
+            const geoY = new THREE.BufferGeometry().setFromPoints([
+                new THREE.Vector3(i, -size / 2, j),
+                new THREE.Vector3(i, size / 2, j)
+            ]);
+            group.add(new THREE.Line(geoY, material));
+
+            // Lines along Z
+            const geoZ = new THREE.BufferGeometry().setFromPoints([
+                new THREE.Vector3(i, j, -size / 2),
+                new THREE.Vector3(i, j, size / 2)
+            ]);
+            group.add(new THREE.Line(geoZ, material));
+        }
+    }
+    return group;
+}
+
+// AGENT LOGIC
+let voteCount = { estable: 0, critico: 0 };
+
+function vote(type) {
+    voteCount[type]++;
+    const stats = document.getElementById('vote-stats');
+    stats.innerText = `Registros: [Estable: ${voteCount.estable} | Crítico: ${voteCount.critico}]`;
+
+    // Save locally
+    localStorage.setItem('quantum_votes', JSON.stringify(voteCount));
+}
+
+function captureLead(event) {
+    event.preventDefault();
+    const email = document.getElementById('lead-email').value;
+    const interest = document.getElementById('lead-interest').value;
+    const successMsg = document.getElementById('lead-success');
+
+    console.log(`Lead Captured: Email=${email}, Interest=${interest}`);
+
+    // Simulate API call
+    successMsg.classList.remove('hidden');
+    document.getElementById('lead-form').style.display = 'none';
+
+    // Store interest for personalized UI later
+    localStorage.setItem('user_interest', interest);
+}
+
+function mutateLattice() {
+    const input = document.getElementById('agent-input').value.toLowerCase();
+    const response = document.getElementById('agent-response');
+    const latticeMesh = sectionMeshes.find(m => m.mesh.type === 'Group' && m.mesh.children.length > 50);
+
+    if (!input) return;
+
+    response.innerText = "Analizando topología...";
+
+    // Automatically select interest based on input
+    if (input.includes('octet')) document.getElementById('lead-interest').value = 'lattice';
+
+    // REFERENCE: Geometrica Encyclopedia (Onyx & Paper White)
+    const concepts = ["Parametría", "Morfogénesis", "Dualidad", "Topología", "Simbiosis"];
+
+    setTimeout(() => {
+        if (input.includes('octet') || input.includes('complex')) {
+            response.innerText = `Agente: Estructura Octet detectada. Vinculando con concepto de ${concepts[1]} (Chapter 1). Optimizando distribución de carga...`;
+            if (latticeMesh) latticeMesh.mesh.scale.set(1.5, 0.5, 1.5);
+        } else if (input.includes('cube') || input.includes('basic')) {
+            response.innerText = `Agente: Re-configurando a Lattice Cúbico Estándar. Principio de ${concepts[0]} aplicado.`;
+            if (latticeMesh) latticeMesh.mesh.scale.set(1, 1, 1);
+        } else if (input.includes('collapse')) {
+            response.innerText = `Agente: Colapso topológico iniciado. Singularidad de ${concepts[2]} inminente.`;
+            if (latticeMesh) latticeMesh.mesh.scale.set(0.1, 0.1, 0.1);
+        } else if (input.includes('geometrica') || input.includes('encyclopedia')) {
+            response.innerText = `Agente: Accediendo a archivos de la Enciclopedia Geométrica (Vol 0.1). Cargando 23 conceptos de diseño computacional...`;
+            // Change color to Geometrica Accent (#E8B4B8)
+            if (latticeMesh) {
+                latticeMesh.mesh.children.forEach(line => line.material.color.set(0xE8B4B8));
+            }
+        } else {
+            response.innerText = `Agente: Comando '${input}' no reconocido en el espacio de Hilbert local. ¿Quizás buscas 'Parametría'?`;
+        }
+    }, 800);
+}
+
+// Load previous stats
+window.addEventListener('DOMContentLoaded', () => {
+    const savedVotes = localStorage.getItem('quantum_votes');
+    if (savedVotes) {
+        voteCount = JSON.parse(savedVotes);
+        const stats = document.getElementById('vote-stats');
+        if (stats) stats.innerText = `Registros: [Estable: ${voteCount.estable} | Crítico: ${voteCount.critico}]`;
+    }
+});
 
 function createNebula() {
     const geo = new THREE.BufferGeometry();
@@ -200,12 +311,19 @@ function animate() {
 
 // Optional Audio Start
 function toggleAudio() {
+    const status = document.getElementById('audio-status');
     if (!audioContext) {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
         analyser = audioContext.createAnalyser();
         analyser.fftSize = 256;
         dataArray = new Uint8Array(analyser.frequencyBinCount);
-        // Map to mic or internal audio here if needed
+        status.innerText = "ACTIVE";
+        status.parentElement.style.borderColor = "#00f2ff";
+        status.parentElement.style.color = "#00f2ff";
+    } else {
+        // Toggle logic (mute/unmute) could go here
+        status.innerText = audioContext.state === 'running' ? "MUTED" : "ACTIVE";
+        audioContext.state === 'running' ? audioContext.suspend() : audioContext.resume();
     }
 }
 

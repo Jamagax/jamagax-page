@@ -87,17 +87,29 @@ body {
     display: flex;
     align-items: center;
     text-decoration: none;
-}
-
-.logo-img {
-    height: 50px;
-    filter: drop-shadow(0 0 15px var(--quantum-cyan));
+    background: #fff;
+    /* Intentional for logo with white bg */
+    padding: 5px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px solid var(--quantum-cyan);
+    box-shadow: 0 0 15px var(--quantum-cyan);
     transition: var(--transition);
 }
 
-.logo-img:hover {
+.logo:hover {
     transform: scale(1.1) rotate(5deg);
-    filter: drop-shadow(0 0 25px var(--quantum-magenta));
+    border-color: var(--quantum-magenta);
+    box-shadow: 0 0 25px var(--quantum-magenta);
+}
+
+.logo-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 
 .nav-links {
@@ -283,13 +295,95 @@ body {
     background: transparent;
 }
 
-.btn-section:hover {
-    background: var(--quantum-cyan);
-    color: var(--bg-dark);
-    box-shadow: 0 0 30px var(--quantum-cyan);
+.quantum-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    padding: 0.8rem 1.2rem;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    outline: none;
+    transition: var(--transition);
 }
 
-/* --- REPOS --- */
+.quantum-input:focus {
+    border-color: var(--quantum-cyan);
+    background: rgba(0, 242, 255, 0.05);
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+}
+
+.agent-controls {
+    margin-bottom: 1.5rem;
+}
+
+/* --- FEEDBACK & LEAD FORM --- */
+.feedback-system {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.vote-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 0.5rem;
+}
+
+.btn-vote {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.btn-vote:hover {
+    border-color: var(--quantum-cyan);
+    color: var(--quantum-cyan);
+    background: rgba(0, 242, 255, 0.05);
+}
+
+.lead-form-box {
+    padding: 2.5rem;
+    width: 100%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+#lead-success {
+    margin-top: 1rem;
+    color: var(--quantum-cyan);
+    text-shadow: 0 0 10px var(--quantum-cyan);
+}
+
+select.quantum-input {
+    appearance: none;
+    cursor: pointer;
+}
+
+select.quantum-input option {
+    background: var(--bg-dark);
+    color: #fff;
+}
+
+.lead-capture-container {
+    background: rgba(125, 0, 255, 0.03);
+    border-color: rgba(125, 0, 255, 0.2);
+}
+
 .repo-list {
     list-style: none;
     display: grid;

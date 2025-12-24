@@ -89,10 +89,11 @@
             <div class="section-container">
                 <div class="text-block">
                     <h2>La Geométrica</h2>
-                    <h3>Archivos del Conocimiento</h3>
-                    <p>Un compendio interactivo sobre las leyes espaciales que rigen la materia y el diseño universal.
-                    </p>
-                    <a href="https://geometrica.xyz" target="_blank" class="btn-section">Abrir Archivo</a>
+                    <h3>Encyclopedia Volume 0.1</h3>
+                    <p>Un compendio interactivo sobre 23 conceptos de diseño computacional y las leyes espaciales que
+                        rigen la materia universal. Basado en el sistema Onyx & Paper White.</p>
+                    <a href="https://github.com/Jamagax/geometrica" target="_blank" class="btn-section">Explorar
+                        Repositorio</a>
                 </div>
             </div>
         </section>
@@ -106,6 +107,55 @@
                     <p>Laboratorio de fabricación aditiva en Tulum. Traigo objetos del hiperespacio a la realidad
                         física.</p>
                     <a href="https://www.instagram.com/3dkinlab/" target="_blank" class="btn-section">Ver Fab</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- LATTICE AGENT (QUANTUM UI LAB) -->
+        <section id="lattice-agent" class="content-section">
+            <div class="section-container">
+                <div class="text-block">
+                    <h2>Lattice Agent</h2>
+                    <h3>Topología Cuántica AI</h3>
+                    <p>Módulo experimental encargado de estudiar estructuras de red (lattice) para la generación de
+                        interfaces de alta dimensionalidad.</p>
+                    <div class="agent-controls">
+                        <input type="text" id="agent-input"
+                            placeholder="Comando de estructura (e.g. 'Octet-Lattice')..." class="quantum-input">
+                        <button onclick="mutateLattice()" class="btn-section">Ejecutar Mutación</button>
+                    </div>
+                    <div id="agent-response" class="small-text mono">Esperando órdenes...</div>
+
+                    <!-- FEEDBACK & VOTING -->
+                    <div class="feedback-system">
+                        <p class="small-text">¿Nivel de estabilidad dimensional?</p>
+                        <div class="vote-buttons">
+                            <button onclick="vote('estable')" class="btn-vote">Estable</button>
+                            <button onclick="vote('critico')" class="btn-vote">Crítico</button>
+                        </div>
+                        <div id="vote-stats" class="small-text mono"></div>
+                    </div>
+                </div>
+
+                <!-- LEAD CAPTURE FORM -->
+                <div class="visual-block lead-capture-container">
+                    <div class="lead-form-box">
+                        <h3>Sincronizar Frecuencia</h3>
+                        <p class="small-text">Recibe actualizaciones sobre topologías y diseño computacional.</p>
+                        <form id="lead-form" onsubmit="captureLead(event)">
+                            <input type="email" id="lead-email" placeholder="tu@dimensionn.xyz" class="quantum-input"
+                                required>
+                            <select id="lead-interest" class="quantum-input">
+                                <option value="studio">Estudio Paramétrico</option>
+                                <option value="academy">Academia Dimension N</option>
+                                <option value="lattice">Agentes Cuánticos</option>
+                                <option value="fab">Lab de Fabricación</option>
+                            </select>
+                            <button type="submit" class="btn-section w-100">Registrar Interés</button>
+                        </form>
+                        <div id="lead-success" class="small-text mono hidden">Sincronización exitosa. Revisando
+                            firewall...</div>
+                    </div>
                 </div>
             </div>
         </section>
