@@ -451,6 +451,57 @@ h1.glitch::after {
     transform: scale(1.05);
 }
 
+/* SECTION BUTTONS */
+.btn-section {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 24px;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+#studio .btn-section {
+    color: var(--accent-studio);
+}
+
+#studio .btn-section:hover {
+    background: var(--accent-studio);
+    color: var(--bg-color);
+}
+
+#dimension-n .btn-section {
+    color: var(--accent-dim-n);
+}
+
+#dimension-n .btn-section:hover {
+    background: var(--accent-dim-n);
+    color: var(--bg-color);
+}
+
+#enciclopedia .btn-section {
+    color: var(--accent-geo);
+}
+
+#enciclopedia .btn-section:hover {
+    background: var(--accent-geo);
+    color: var(--bg-color);
+}
+
+#lab .btn-section {
+    color: var(--accent-lab);
+}
+
+#lab .btn-section:hover {
+    background: var(--accent-lab);
+    color: var(--bg-color);
+}
+
 /* FOOTER */
 footer {
     padding: 40px;
