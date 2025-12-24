@@ -1,0 +1,7 @@
+.github_token
+LAUNCH_LOCAL.bat
+auto_cleanup.sh
+.DS_Store
+node_modules/
+dist/
+.env

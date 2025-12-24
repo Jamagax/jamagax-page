@@ -4,16 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jamagax | Polímata Geométrico</title>
-    <meta name="description" content="El universo de Jamagax: Música, Programación, Geometría y Diseño Computacional.">
+    <title>Jamagax | Nexo Dimensional Cuántico</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Space+Mono:wght@400;700&display=swap"
-        rel="stylesheet">
+    <!-- SEO & Social Meta Tags -->
+    <meta name="description"
+        content="Jamagax: Artista, Músico y Programador. Un nexo dimensional para diseño computacional, geometría sagrada y fabricación digital avanzada en Tulum.">
+    <meta name="keywords"
+        content="Jamagax, Jamagax Studio, Dimension N, Geometría Sagrada, Diseño Computacional, Three.js, Rhino 3D, Tulum Fabrication">
+    <meta property="og:title" content="Jamagax | Nexo Dimensional">
+    <meta property="og:description" content="Explora el universo de diseño y código de Jamagax.">
+    <meta property="og:image" content="https://jamagax.github.io/jamagax-page/assets/logo.png">
+    <meta property="og:url" content="https://jamagax.dimensionn.xyz">
+    <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -23,32 +27,34 @@
     <div class="vignette"></div>
 
     <nav class="navbar">
-        <div class="logo">JAMAGAX</div>
+        <a href="#home" class="logo">
+            <img src="assets/logo.png" alt="Jamagax Logo" class="logo-img">
+        </a>
         <ul class="nav-links">
             <li><a href="#studio">Studio</a></li>
             <li><a href="#dimension-n">Dimension N</a></li>
-            <li><a href="#enciclopedia">Enciclopedia</a></li>
-            <li><a href="#lab">3D Kin Lab</a></li>
+            <li><a href="#enciclopedia">Geometría</a></li>
+            <li><a href="#lab">Lab</a></li>
+            <li><a href="#repos">Git</a></li>
+            <li><button id="audio-toggle" class="btn-audio" onclick="toggleAudio()"><span
+                        id="audio-status">MUTED</span></button></li>
             <li><a href="#contact" class="btn-nav">Conectar</a></li>
         </ul>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-        </div>
     </nav>
 
     <main>
         <!-- HERO SECTION -->
         <section id="home" class="hero-section">
             <div class="hero-content">
+                <p class="subtitle">&lt; NEXUS_ONLINE // JAMAGAX_V2.5 &gt;</p>
                 <h1 class="glitch" data-text="JAMAGAX">JAMAGAX</h1>
-                <p class="subtitle">Artista . Músico . Programador . Geómetra . Polímata</p>
                 <div class="hero-bio">
-                    <p>Bienvenido a mi nexo dimensional. Aquí convergen el código, la forma y el sonido.</p>
+                    <p>Polímata operando en la convergencia del código, la simetría y la materia. Bienvenido a mi
+                        frecuencia.</p>
                 </div>
             </div>
             <div class="hero-graphic" id="hero-canvas-container">
-                <!-- Three.js Canvas will be injected here -->
+                <!-- Advanced Quantum Journey Canvas -->
             </div>
         </section>
 
@@ -57,13 +63,10 @@
             <div class="section-container">
                 <div class="text-block">
                     <h2>Jamagax Studio</h2>
-                    <h3>Diseño Computacional</h3>
-                    <p>Donde los algoritmos se vuelven arte. Un estudio dedicado a la exploración de la forma a través
-                        del código generativo y la lógica paramétrica.</p>
-                    <a href="https://jamagax.dimensionn.xyz" target="_blank" class="btn-section">Entrar al Studio</a>
-                </div>
-                <div class="visual-block studio-visual">
-                    <div class="abstract-circle"></div>
+                    <h3>Algoritmia Estética</h3>
+                    <p>Donde el código se vuelve forma. Un espacio dedicado a la exploración de sistemas generativos y
+                        morfologías computacionales.</p>
+                    <a href="https://jamagax.dimensionn.xyz" target="_blank" class="btn-section">Acceder al Nodo</a>
                 </div>
             </div>
         </section>
@@ -73,70 +76,75 @@
             <div class="section-container">
                 <div class="text-block">
                     <h2>Dimension N</h2>
-                    <h3>Academia & Software</h3>
-                    <p>La puerta al conocimiento. Academia de Diseño Computacional y punto oficial para Rhino y KeyShot.
-                        Aprende a construir tus propias herramientas y visiones.</p>
-                    <a href="https://dimensionn.xyz" target="_blank" class="btn-section">Explorar Academia</a>
-                </div>
-                <div class="visual-block dim-n-visual">
-                    <div class="cube-grid"></div>
+                    <h3>Quantum Academy</h3>
+                    <p>Centro de transmisión de conocimiento en Rhino y KeyShot. Construye tus propias herramientas de
+                        realidad.</p>
+                    <a href="https://dimensionn.xyz" target="_blank" class="btn-section">Transmitir</a>
                 </div>
             </div>
         </section>
 
-        <!-- LA GEOMETRICA ENCICLOPEDIA -->
+        <!-- GEOMETRICA -->
         <section id="enciclopedia" class="content-section">
             <div class="section-container">
                 <div class="text-block">
-                    <h2>La Geométrica Enciclopedia</h2>
-                    <h3>Libro Interactivo</h3>
-                    <p>Un compendio vivo del conocimiento espacial. Más que un libro, una experiencia explorable sobre
-                        las leyes que gobiernan la forma.</p>
-                    <a href="https://geometrica.xyz" target="_blank" class="btn-section">Abrir Enciclopedia</a>
-                </div>
-                <div class="visual-block geo-visual">
-                    <div class="geo-structure"></div>
+                    <h2>La Geométrica</h2>
+                    <h3>Archivos del Conocimiento</h3>
+                    <p>Un compendio interactivo sobre las leyes espaciales que rigen la materia y el diseño universal.
+                    </p>
+                    <a href="https://geometrica.xyz" target="_blank" class="btn-section">Abrir Archivo</a>
                 </div>
             </div>
         </section>
 
-        <!-- 3D KIN LAB -->
+        <!-- LAB -->
         <section id="lab" class="content-section reverse">
             <div class="section-container">
                 <div class="text-block">
                     <h2>3D kin Lab</h2>
-                    <h3>Fabricación Digital en Tulum</h3>
-                    <p>Materializando lo digital. Mi laboratorio personal equipado con la P1S, trayendo objetos desde el
-                        hiperespacio a la realidad física en el corazón de la selva.</p>
-                    <a href="https://www.instagram.com/3dkinlab/" target="_blank" class="btn-section">Ver
-                        Laboratorio</a>
-                </div>
-                <div class="visual-block lab-visual">
-                    <div class="printer-layer"></div>
+                    <h3>Materia Digital</h3>
+                    <p>Laboratorio de fabricación aditiva en Tulum. Traigo objetos del hiperespacio a la realidad
+                        física.</p>
+                    <a href="https://www.instagram.com/3dkinlab/" target="_blank" class="btn-section">Ver Fab</a>
                 </div>
             </div>
         </section>
 
-        <!-- CONTACT / CHAT -->
+        <!-- REPOS -->
+        <section id="repos" class="content-section">
+            <div class="section-container">
+                <div class="text-block">
+                    <h2>Nexo Git</h2>
+                    <h3>Código Abierto</h3>
+                    <ul class="repo-list">
+                        <li><a href="https://github.com/Jamagax/jamagax-page" target="_blank">jamagax-page</a></li>
+                        <li><a href="https://github.com/Jamagax/RhinoScripts" target="_blank">RhinoScripts</a></li>
+                        <li><a href="https://github.com/Jamagax/Viktor3d" target="_blank">Viktor3d</a></li>
+                        <li><a href="https://github.com/Jamagax/DimensionN" target="_blank">DimensionN</a></li>
+                    </ul>
+                    <p class="small-text">Haz clic en los objetos 3D para navegar rápidamente.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
         <section id="contact" class="contact-section">
             <div class="chat-container">
                 <div class="chat-header">
                     <span class="status-dot"></span> jamagax@dimensionn.xyz
                 </div>
                 <div class="chat-body">
-                    <p class="bot-msg">¿Te interesa colaborar en alguna de estas dimensiones?</p>
-                    <p class="bot-msg">La intersección entre música y código es donde encuentro mi flujo más puro.
-                        Cuéntame, ¿qué estás construyendo tú?</p>
+                    <p class="bot-msg">Sintonización completada. ¿Qué dimensión quieres construir hoy?</p>
                 </div>
                 <div class="chat-action">
-                    <a href="mailto:jamagax@dimensionn.xyz" class="btn-primary">Iniciar Transmisión</a>
+                    <a href="mailto:jamagax@dimensionn.xyz" class="btn-primary">ENVIAR SEÑAL</a>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Jamagax. Todos los derechos reservados en este y otros universos.</p>
+        <p>&copy; 2025 JAMAGAX. PROYECTO DIMENSIONAL // TULUM, MÉXICO.</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
