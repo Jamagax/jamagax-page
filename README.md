@@ -39,7 +39,13 @@ El sistema ha sido construido sobre una arquitectura ligera pero visualmente pot
 ### 1. Interfaz **Glassmorphism & Neon**
 Diseño oscuro "Dark Mode" nativo con efectos de cristal esmerilado, bordes de neón (`#00f2ff`, `#ff00e5`) y tipografías tecno (**Orbitron**, **Space Mono**).
 
-### 2. Lattice Agent (IA Experimental)
+### 2. Quantum Philosophy (Manifesto)
+Nueva sección dedicada a la filosofía del diseño: **Quantum Curvature Flow**.
+*   Simbolizada por un **Tetraedro** giratorio en el canvas 3D.
+*   Incluye la métrica **G0-G3** y el concepto de "Assemblage Coherence".
+*   Contenido expandible para lectura profunda sin saturar la interfaz.
+
+### 3. Lattice Agent (IA Experimental)
 Una sección interactiva donde los usuarios pueden:
 *   Enviar comandos de texto a una terminal simulada.
 *   Votar sobre la estabilidad dimensional del sistema.

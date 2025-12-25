@@ -278,6 +278,37 @@ body {
     margin-bottom: 2rem;
 }
 
+
+/* --- JAMAGAIax THEME --- */
+.jamagaiax-theme {
+    border-color: rgba(0, 255, 128, 0.3);
+    background: linear-gradient(135deg, rgba(0, 255, 128, 0.02) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.jamagaiax-theme:hover {
+    border-color: #00ff80;
+    box-shadow: 0 0 30px rgba(0, 255, 128, 0.15);
+}
+
+.jamagaiax-theme h2 {
+    text-shadow: 0 0 10px rgba(0, 255, 128, 0.5);
+}
+
+.jamagaiax-theme h3 {
+    color: #00ff80;
+}
+
+.btn-jamagaiax {
+    border-color: #00ff80;
+    color: #00ff80;
+}
+
+.btn-jamagaiax:hover {
+    background: rgba(0, 255, 128, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 128, 0.4);
+    color: #fff;
+}
+
 /* --- BUTTONS --- */
 .btn-section {
     display: inline-block;
@@ -469,5 +500,60 @@ footer {
 
     .glitch {
         font-size: 3.5rem;
+    }
+}
+
+/* --- PHILOSOPHY SECTION --- */
+.philosophy-table {
+    width: 100%;
+    margin: 2rem 0;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+.philosophy-table th {
+    text-align: left;
+    color: var(--quantum-magenta);
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.philosophy-table td {
+    padding: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.manifesto-quote {
+    font-style: italic;
+    border-left: 3px solid var(--quantum-gold);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.philosophy-details {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--glass-border);
+    display: none;
+    /* Hidden by default */
+}
+
+.philosophy-details.visible {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

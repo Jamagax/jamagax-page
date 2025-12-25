@@ -33,6 +33,7 @@
         <ul class="nav-links">
             <li><a href="#studio">Studio</a></li>
             <li><a href="#dimension-n">Dimension N</a></li>
+            <li><a href="#philosophy">Filosofía</a></li>
             <li><a href="#enciclopedia">Geometría</a></li>
             <li><a href="#lab">Lab</a></li>
             <li><a href="#repos">Git</a></li>
@@ -80,6 +81,91 @@
                     <p>Centro de transmisión de conocimiento en Rhino y KeyShot. Construye tus propias herramientas de
                         realidad.</p>
                     <a href="https://dimensionn.xyz" target="_blank" class="btn-section">Transmitir</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHILOSOPHY (NEW) -->
+        <section id="philosophy" class="content-section">
+            <div class="section-container">
+                <div class="text-block">
+                    <h2>Quantum Curvature Flow</h2>
+                    <h3>Manifiesto v17 (Jamagax)</h3>
+
+                    <p class="manifesto-quote">
+                        "Continuity is a universal language. Every expression in the universe manifests as a network of
+                        curves."
+                    </p>
+
+                    <h4>1. Foundation — Continuity</h4>
+                    <table class="philosophy-table">
+                        <tr>
+                            <th>Grade</th>
+                            <th>Definition</th>
+                            <th>Analogy</th>
+                        </tr>
+                        <tr>
+                            <td>G0</td>
+                            <td>Posición (Fragmentación)</td>
+                            <td>Acantilado</td>
+                        </tr>
+                        <tr>
+                            <td>G1</td>
+                            <td>Tangencia (Intención)</td>
+                            <td>Camino</td>
+                        </tr>
+                        <tr>
+                            <td>G2</td>
+                            <td>Curvatura (Fluidez)</td>
+                            <td>Río</td>
+                        </tr>
+                        <tr>
+                            <td>G3</td>
+                            <td>Rate (Armonía)</td>
+                            <td>Ola</td>
+                        </tr>
+                    </table>
+
+                    <p><strong>G3</strong> es el horizonte de la legibilidad visual. Más allá (G4+), se requiere
+                        percepción táctil o temporal.</p>
+
+                    <button class="btn-section" onclick="toggleManifesto()">Expandir Manifiesto</button>
+
+                    <div id="full-manifesto" class="philosophy-details">
+                        <h4>2. The CRVCO Metric</h4>
+                        <p>El Coeficiente de Curvatura no mide estilo, mide la <strong>coherencia interna</strong> de un
+                            ensamblaje.</p>
+
+                        <br>
+                        <h4>3. The Generative Engine</h4>
+                        <ul class="small-text" style="color:rgba(255,255,255,0.8); margin-bottom:1rem;">
+                            <li><strong>Substrate (K'un):</strong> El medio físico (Posibilidad).</li>
+                            <li><strong>Principle (Ch'ien):</strong> El algoritmo generativo (Proceso).</li>
+                            <li><strong>Attractor:</strong> El estado estable (Patrón).</li>
+                        </ul>
+
+                        <p>El "pecado" del mal diseño no es moral, es un fallo de proceso: crear un ensamblaje
+                            incoherente que disminuye el <em>K'uh</em> (fuerza vital).</p>
+
+                        <p class="small-text mono" style="margin-top:2rem;">
+                            "Tune one form today." — Jamagax, Tulum 2025.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- JAMAGAIax PORTAL -->
+        <section id="jamagaiax" class="content-section">
+            <div class="section-container jamagaiax-theme">
+                <div class="text-block">
+                    <h2>JamagAIax</h2>
+                    <h3>Neural & Code Nexus</h3>
+                    <p>El núcleo de desarrollo para Inteligencia Artificial, Scripts y Aplicaciones Digitales.
+                        Repositorios, automatización y experimentos de código vivo.</p>
+                    <a href="https://jamagaiax.dimensionn.xyz" target="_blank" class="btn-section btn-jamagaiax">
+                        <span class="icon">⚡</span> Acceder al Núcleo
+                    </a>
                 </div>
             </div>
         </section>
@@ -199,6 +285,19 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        function toggleManifesto() {
+            const content = document.getElementById('full-manifesto');
+            const btn = document.querySelector('#philosophy .btn-section');
+            if (content.classList.contains('visible')) {
+                content.classList.remove('visible');
+                btn.innerText = "Expandir Manifiesto";
+            } else {
+                content.classList.add('visible');
+                btn.innerText = "Colapsar";
+            }
+        }
+    </script>
 </body>
 
 </html>
