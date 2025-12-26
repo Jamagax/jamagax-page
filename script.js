@@ -75,6 +75,7 @@ function createAdvancedJourney() {
         { type: 'torus', color: PARAMS.colors.magenta, id: 'studio' },
         { type: 'octa', color: PARAMS.colors.gold, id: 'dimension-n' },
         { type: 'tetra', color: PARAMS.colors.purple, id: 'philosophy' },
+        { type: 'icosa', color: PARAMS.colors.cyan, id: 'musica' },
         { type: 'dodeca', color: PARAMS.colors.cyan, id: 'enciclopedia' },
         { type: 'box', color: PARAMS.colors.purple, id: 'lab' },
         { type: 'lattice', color: PARAMS.colors.gold, id: 'lattice-agent' },
@@ -104,6 +105,7 @@ function createAdvancedJourney() {
             case 'torus': mesh = new THREE.Mesh(new THREE.TorusKnotGeometry(1.2, 0.4, 120, 20), shaderMat); break;
             case 'octa': mesh = new THREE.Mesh(new THREE.OctahedronGeometry(2), shaderMat); break;
             case 'tetra': mesh = new THREE.Mesh(new THREE.TetrahedronGeometry(2.5), shaderMat); break;
+            case 'icosa': mesh = new THREE.Mesh(new THREE.IcosahedronGeometry(2), shaderMat); break;
             case 'dodeca': mesh = new THREE.Mesh(new THREE.DodecahedronGeometry(2), shaderMat); break;
             case 'box': mesh = new THREE.Mesh(new THREE.BoxGeometry(2.5, 2.5, 2.5), shaderMat); break;
             case 'lattice':

@@ -557,3 +557,49 @@ footer {
         transform: translateY(0);
     }
 }
+
+/* --- MUSIC SECTION --- */
+.music-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.music-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 2px solid var(--quantum-cyan);
+    padding: 1.5rem;
+    transition: var(--transition);
+}
+
+.music-card:hover {
+    background: rgba(0, 242, 255, 0.05);
+    border-left-color: var(--quantum-magenta);
+    transform: translateX(10px);
+}
+
+.music-card h4 {
+    font-family: var(--font-heading);
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.genre-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--quantum-gold);
+    border: 1px solid var(--quantum-gold);
+    padding: 2px 6px;
+    margin-bottom: 0.8rem;
+    border-radius: 4px;
+}
+
+.ecosystem-text {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+}
