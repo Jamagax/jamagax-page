@@ -13,7 +13,6 @@ class HeroCarousel {
         this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
         this.items = [
-            { title: "STUDIO", img: "assets/mayan_warrior.png", link: "#studio" },
             { title: "DIMENSION N", img: "assets/dimension_n.png", link: "#dimension-n" },
             { title: "LAB", img: "assets/3d_kin_lab.png", link: "#jamagaiax" },
             { title: "PHILOSOPHY", img: "assets/philosophy_flow.png", link: "#philosophy" },
