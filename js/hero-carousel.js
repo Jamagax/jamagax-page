@@ -17,7 +17,7 @@ class HeroCarousel {
             { title: "LAB", img: "assets/3d_kin_lab.png", link: "#jamagaiax" },
             { title: "PHILOSOPHY", img: "assets/philosophy_flow.png", link: "#philosophy" },
             { title: "GEOMETRY", img: "assets/geometrica.png", link: "#enciclopedia" },
-            { title: "MUSIC", img: "assets/noni_bg.png", link: "#musica" }
+            { title: "MUSIC", img: "assets/breathing_universe.png", link: "#musica" }
         ];
 
         this.cards = [];
