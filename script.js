@@ -331,4 +331,36 @@ function toggleAudio() {
     }
 }
 
-window.onload = init;
+window.onload = () => {
+    init();
+
+    // ScrollSpy / Intersection Observer for Navbar
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-50% 0px -50% 0px', // Triggers when section is exactly in the middle of viewport
+        threshold: 0
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Remove active class from all links
+                navLinks.forEach(link => link.classList.remove('active'));
+
+                // Find the link that corresponds to the visible section
+                const activeId = entry.target.id;
+                const activeLink = document.querySelector(`.nav-links a[href="#${activeId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+};
