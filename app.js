@@ -34,6 +34,7 @@ let currentObject;
 let loadToken = 0;
 let resizeObserver;
 let currentLanguage = "es";
+let heroFocusController;
 
 const TRANSLATIONS = {
   "Ir al contenido": "Skip to content",
@@ -53,6 +54,9 @@ const TRANSLATIONS = {
   "Explorar el estudio": "Explore the studio",
   "Cuéntanos tu idea": "Tell us your idea",
   "Proyectos destacados": "Featured projects",
+  "Proyectos destacados; pulsa para ocultar la interfaz": "Featured projects; click to hide the interface",
+  "Contemplar la señal": "View the signal",
+  "Recuperar la interfaz": "Restore the interface",
   "Diseño paramétrico": "Parametric design",
   "Señal · Código · Forma · Materia": "Signal · Code · Form · Matter",
   "Diseño computacional": "Computational design",
@@ -180,6 +184,7 @@ function setLanguage(language, persist = true) {
     : "Jamagax Studio traduce patrones, datos e intuiciones en geometrías y sistemas fabricables mediante diseño computacional, inteligencia artificial y fabricación digital.");
 
   updateModelCopy(activeModel);
+  heroFocusController?.refresh();
   if (persist) {
     localStorage.setItem("jamagax-language", currentLanguage);
     const url = new URL(window.location.href);
@@ -223,10 +228,40 @@ document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe
 function initHeroCarousel() {
   const carousel = document.getElementById("hero-carousel");
   if (!carousel) return;
+  const hero = carousel.closest(".hero");
+  const focusToggle = hero.querySelector(".hero-focus-toggle");
   const slides = [...carousel.querySelectorAll(".hero-slide")];
   const dotsWrap = carousel.querySelector(".hero-dots");
   let active = 0;
   let timer;
+  let focused = false;
+
+  function setFocusMode(enabled) {
+    focused = Boolean(enabled);
+    hero.classList.toggle("hero-focus-mode", focused);
+    body.classList.toggle("hero-focus-mode", focused);
+    focusToggle.setAttribute("aria-pressed", String(focused));
+    carousel.setAttribute("aria-label", currentLanguage === "en"
+      ? `Featured projects; click to ${focused ? "restore" : "hide"} the interface`
+      : `Proyectos destacados; pulsa para ${focused ? "recuperar" : "ocultar"} la interfaz`);
+  }
+
+  heroFocusController = { refresh: () => setFocusMode(focused) };
+
+  focusToggle.addEventListener("click", () => setFocusMode(!focused));
+  hero.addEventListener("click", (event) => {
+    if (event.target.closest("a, button")) return;
+    setFocusMode(!focused);
+  });
+  carousel.addEventListener("keydown", (event) => {
+    if (event.target !== carousel || !["Enter", " "].includes(event.key)) return;
+    event.preventDefault();
+    setFocusMode(!focused);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && focused) setFocusMode(false);
+  });
+  if (new URLSearchParams(window.location.search).get("focus") === "1") setFocusMode(true);
 
   const dots = slides.map((slide, index) => {
     const dot = document.createElement("button");
