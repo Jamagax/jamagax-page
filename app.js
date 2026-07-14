@@ -1,26 +1,30 @@
 const MODELS = [
   {
-    name: "Teseracto Polyhedra",
+    name: "Escultura Polyhedra · Teseracto",
     type: { es: "Geometría espacial", en: "Spatial geometry" },
-    description: { es: "Simetría multidimensional, estelaciones y detalle recursivo convertidos en una pieza escultórica.", en: "Multidimensional symmetry, stellations and recursive detail transformed into a sculptural piece." },
+    credit: { es: "Diseño: Jamagax / Eclectica", en: "Design: Jamagax / Eclectica" },
+    description: { es: "Diseño y modelado paramétrico de una pieza basada en simetría multidimensional, estelaciones y detalle recursivo.", en: "Design and parametric modeling of a piece based on multidimensional symmetry, stellations and recursive detail." },
     source: "jamagax_models/Escultura_Polyhedra.glb"
   },
   {
     name: "M-Size Shell",
     type: { es: "Fabricación aditiva", en: "Additive manufacturing" },
-    description: { es: "Superficie de doble curvatura racionalizada para ventilación, ligereza e impresión 3D.", en: "A double-curved surface rationalized for ventilation, lightness and 3D printing." },
+    credit: { es: "Diseño arquitectónico: Arq. Jacobo Ruiz", en: "Architectural design: Arch. Jacobo Ruiz" },
+    description: { es: "Participación Jamagax: modelo paramétrico, maqueta impresa en 3D a color, desarrollo y fabricación en acero.", en: "Jamagax participation: parametric model, multicolor 3D-printed scale model, development and steel fabrication." },
     source: "jamagax_models/M-Size.glb"
   },
   {
     name: "Templo de Morfeo",
     type: { es: "Arquitectura paramétrica", en: "Parametric architecture" },
-    description: { es: "Una investigación espacial de arcos continuos, bóvedas fluidas y luz tropical.", en: "A spatial exploration of continuous arches, fluid vaults and tropical light." },
+    credit: { es: "Diseño: Jamagax", en: "Design: Jamagax" },
+    description: { es: "Investigación espacial y diseño paramétrico de arcos continuos, bóvedas fluidas y luz tropical.", en: "Spatial research and parametric design of continuous arches, fluid vaults and tropical light." },
     source: "jamagax_models/TemploDeMorfeo.glb"
   },
   {
     name: "A-Frame",
     type: { es: "Sistema constructivo", en: "Building system" },
-    description: { es: "Una estructura modular que usa repetición, triangulación y ensamblaje como lenguaje.", en: "A modular structure that uses repetition, triangulation and assembly as its language." },
+    credit: { es: "Diseño arquitectónico: Arq. Jacobo Ruiz", en: "Architectural design: Arch. Jacobo Ruiz" },
+    description: { es: "Participación Jamagax: modelo paramétrico y maqueta impresa en 3D a color.", en: "Jamagax participation: parametric model and multicolor 3D-printed scale model." },
     source: "jamagax_models/A-Frame.glb"
   }
 ];
@@ -78,6 +82,12 @@ const TRANSLATIONS = {
   "Evidencias materializadas": "Materialized evidence",
   "Ideas complejas.": "Complex ideas.",
   "Realidad precisa.": "Precise reality.",
+  "Diseño:": "Design:",
+  "Participación de Jamagax:": "Jamagax participation:",
+  "Mayan Warrior Team": "Mayan Warrior Team",
+  "LAR Arquitectos": "LAR Arquitectos",
+  "Estrategia inicial de panelización.": "Initial panelization strategy.",
+  "Computational Design Lead: estrategia inicial de panelización, nomenclatura avanzada y fabricación digital en aluminio con CNC de 3 y 4 ejes.": "Computational Design Lead: initial panelization strategy, advanced nomenclature and digital aluminum fabrication using 3- and 4-axis CNC.",
   "Una trayectoria que cruza arquitectura, arte monumental, fabricación industrial, producto e interfaces sensibles.": "A body of work spanning architecture, monumental art, industrial fabrication, product design and responsive interfaces.",
   "Estrategia computacional, nesting, código G y secuencia de ensamblaje para más de 1,500 componentes únicos mecanizados en CNC.": "Computational strategy, nesting, G-code and assembly sequencing for more than 1,500 unique CNC-machined components.",
   "Dirección de fabricación de moldes MDF a gran escala y componentes orgánicos en maderas exóticas.": "Fabrication direction for large-scale MDF molds and organic components in exotic woods.",
@@ -349,6 +359,7 @@ function updateModelCopy(index) {
   const model = MODELS[index];
   document.getElementById("info-type").textContent = model.type[currentLanguage];
   document.getElementById("info-title").textContent = model.name;
+  document.getElementById("info-credit").textContent = model.credit[currentLanguage];
   document.getElementById("info-desc").textContent = model.description[currentLanguage];
   document.getElementById("model-counter").textContent = `${String(index + 1).padStart(2, "0")} / ${String(MODELS.length).padStart(2, "0")}`;
   document.querySelectorAll(".model-dot").forEach((dot, dotIndex) => dot.classList.toggle("active", dotIndex === index));

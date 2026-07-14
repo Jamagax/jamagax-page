@@ -336,6 +336,7 @@ h1 em { background: linear-gradient(105deg, var(--coral), #9f50c8 52%, var(--tur
 .hero-3d-portal .viewer-topline { top: 7rem; left: auto; right: clamp(2rem, 5vw, 5rem); color: #e6bd71; }
 .hero-3d-portal .model-info { right: clamp(2rem, 5vw, 5rem); bottom: 7rem; left: auto; max-width: 430px; text-align: right; transition: opacity .6s ease, transform .6s ease; }
 .hero-3d-portal .model-info > p:first-child { color: #62d9d1; }
+.hero-3d-portal .model-info .model-credit { margin: .35rem 0 .55rem; color: #e6bd71; font-family: var(--mono); font-size: .52rem; letter-spacing: .08em; text-transform: uppercase; }
 .hero-3d-portal .model-info h3 { text-shadow: 0 2px 28px rgba(0,0,0,.5); }
 .hero-3d-portal .model-info > p:last-child { margin-left: auto; }
 .hero-3d-portal .model-actions { right: clamp(2rem, 5vw, 5rem); bottom: 2rem; }
@@ -401,6 +402,8 @@ body.menu-open .site-header .nav-cta { border-color: var(--ink); }
 
 .work { background: linear-gradient(150deg, #e9e1d1, #f1eadf 48%, #e4ded3); }
 .project { position: relative; border: 1px solid rgba(16,45,60,.16); background: rgba(248,244,234,.9); box-shadow: 0 18px 50px rgba(16,45,60,.05); }
+.project-copy .project-credit { margin-bottom: .45rem; color: rgba(16,45,60,.68); font-family: var(--mono); font-size: .62rem; letter-spacing: .045em; text-transform: uppercase; }
+.project-copy p strong { color: var(--ink); font-weight: 600; }
 .project::before { position: absolute; z-index: 4; top: .9rem; left: .9rem; padding: .35rem .5rem; color: rgba(248,244,234,.86); border: 1px solid rgba(248,244,234,.3); background: rgba(7,19,28,.62); font-family: var(--mono); font-size: .46rem; letter-spacing: .11em; text-transform: uppercase; }
 .project:nth-child(1)::before { content: "REGISTRO JX—01"; }
 .project:nth-child(2)::before { content: "REGISTRO JX—02"; }
