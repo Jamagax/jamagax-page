@@ -1,5 +1,5 @@
 @echo off
 echo Iniciando Jamagax Nexus...
-echo Abriendo su portal dimensional localmente.
-start "" "index.html"
+echo Abriendo su portal dimensional localmente...
+call LAUNCH_LOCAL_SERVER.bat
 exit

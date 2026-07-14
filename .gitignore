@@ -5,3 +5,4 @@ auto_cleanup.sh
 node_modules/
 dist/
 .env
+

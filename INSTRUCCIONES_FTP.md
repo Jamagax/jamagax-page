@@ -8,8 +8,9 @@ Solo tienes que copiar el **contenido** de la carpeta `dist` a tu directorio `pu
 
 1.  **`index.html`** (Estructura y SEO)
 2.  **`style.css`** (Diseño Quantum)
-3.  **`script.js`** (Three.js Journey Logic)
+3.  **`app.js`** (Three.js Journey Logic)
 4.  **`assets/`** (Contiene tu `logo.png`)
+5.  **`jamagax_models/`** (Contiene los modelos 3D en formato `.glb`)
 
 ---
 

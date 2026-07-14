@@ -1,27 +1,40 @@
-name: Deploy to Hostinger via FTP
+name: Deploy Jamagax Studio to Hostinger
+
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: jamagax-production
+  cancel-in-progress: true
 
 jobs:
-  ftp-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: 🚀 Sync to Hostinger
+      - name: Build static site
+        run: |
+          rm -rf dist
+          mkdir -p dist
+          cp index.html style.css app.js robots.txt sitemap.xml dist/
+          cp -R assets jamagax_models dist/
+
+      - name: Verify build
+        run: |
+          test -f dist/index.html
+          test -f dist/app.js
+          test -f dist/jamagax_models/TemploDeMorfeo.glb
+          test -f dist/assets/downloads/Jamagax-CV-2026-ES.pdf
+
+      - name: Publish to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ftp.hostinger.com
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
+          local-dir: ./dist/
           server-dir: /public_html/jamagax/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            .github_token
-            auto_cleanup.sh
-            LAUNCH_LOCAL.bat

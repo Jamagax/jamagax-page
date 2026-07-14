@@ -27,4 +27,4 @@ Si quieres hospedarlo en GitHub.
 ## Opción 3: Hosting Tradicional (FTP)
 Si ya tienes hosting para `dimensionn.xyz`:
 1.  Usa un cliente FTP (como FileZilla).
-2.  Sube todos los archivos (`index.html`, `style.css`, `script.js`) a la carpeta `public_html` de tu servidor.
+2.  Sube todos los archivos (`index.html`, `style.css`, `app.js`, carpeta `assets/` y carpeta `jamagax_models/`) a la carpeta `public_html` de tu servidor.
