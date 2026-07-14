@@ -225,9 +225,46 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
 
+function initHeroFocus() {
+  const portal = document.getElementById("hero-3d-portal");
+  if (!portal) return;
+  const hero = portal.closest(".hero");
+  const focusToggle = hero.querySelector(".hero-focus-toggle");
+  let focused = false;
+
+  function setFocusMode(enabled) {
+    focused = Boolean(enabled);
+    hero.classList.toggle("hero-focus-mode", focused);
+    body.classList.toggle("hero-focus-mode", focused);
+    focusToggle.setAttribute("aria-pressed", String(focused));
+    portal.setAttribute("aria-label", currentLanguage === "en"
+      ? `3D geometry carousel; click to ${focused ? "restore" : "hide"} the interface`
+      : `Carrusel tridimensional de geometrías; pulsa para ${focused ? "recuperar" : "ocultar"} la interfaz`);
+  }
+
+  heroFocusController = { refresh: () => setFocusMode(focused) };
+  focusToggle.addEventListener("click", () => setFocusMode(!focused));
+  hero.addEventListener("click", (event) => {
+    if (event.target.closest("a, button")) return;
+    setFocusMode(!focused);
+  });
+  portal.addEventListener("keydown", (event) => {
+    if (event.target !== portal || !["Enter", " "].includes(event.key)) return;
+    event.preventDefault();
+    setFocusMode(!focused);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && focused) setFocusMode(false);
+  });
+  if (new URLSearchParams(window.location.search).get("focus") === "1") setFocusMode(true);
+}
+
 function initHeroCarousel() {
   const carousel = document.getElementById("hero-carousel");
-  if (!carousel) return;
+  if (!carousel) {
+    initHeroFocus();
+    return;
+  }
   const hero = carousel.closest(".hero");
   const focusToggle = hero.querySelector(".hero-focus-toggle");
   const slides = [...carousel.querySelectorAll(".hero-slide")];

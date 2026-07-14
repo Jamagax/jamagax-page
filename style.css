@@ -328,6 +328,21 @@ h1 em { background: linear-gradient(105deg, var(--coral), #9f50c8 52%, var(--tur
 .hero-slide-meta { right: clamp(2rem, 5vw, 5rem); bottom: 6rem; left: auto; max-width: 480px; text-align: right; transition: opacity .6s ease, transform .6s ease; }
 .hero-carousel-controls { right: clamp(2rem, 5vw, 5rem); bottom: 2rem; left: auto; width: min(340px, 32vw); transition: opacity .6s ease; }
 .hero-carousel .hero-stamp { top: 7rem; right: clamp(2rem, 5vw, 5rem); transition: opacity .6s ease; }
+.hero-3d-portal { position: absolute; z-index: 0; inset: 0; cursor: grab; transition: opacity .7s ease; }
+.hero-3d-portal:active { cursor: grabbing; }
+.hero-3d-portal .viewer-wrap { min-height: 100%; height: 100%; border: 0; background: radial-gradient(circle at 70% 42%, rgba(52,91,112,.68) 0, rgba(11,35,49,.86) 34%, rgba(3,12,19,.98) 75%); box-shadow: none; }
+.hero-3d-portal .viewer-wrap::before { inset: 7%; opacity: .45; border-color: rgba(91,215,207,.18); box-shadow: 0 0 0 7vw rgba(40,189,182,.025), 0 0 0 14vw rgba(214,66,155,.018); }
+.hero-3d-portal .viewer-wrap::after { background: linear-gradient(90deg, rgba(3,11,18,.82), rgba(3,11,18,.42) 43%, rgba(3,11,18,.08) 78%), linear-gradient(to top, rgba(3,11,18,.65), transparent 48%); transition: opacity .75s ease; }
+.hero-3d-portal .viewer-topline { top: 7rem; left: auto; right: clamp(2rem, 5vw, 5rem); color: #e6bd71; }
+.hero-3d-portal .model-info { right: clamp(2rem, 5vw, 5rem); bottom: 7rem; left: auto; max-width: 430px; text-align: right; transition: opacity .6s ease, transform .6s ease; }
+.hero-3d-portal .model-info > p:first-child { color: #62d9d1; }
+.hero-3d-portal .model-info h3 { text-shadow: 0 2px 28px rgba(0,0,0,.5); }
+.hero-3d-portal .model-info > p:last-child { margin-left: auto; }
+.hero-3d-portal .model-actions { right: clamp(2rem, 5vw, 5rem); bottom: 2rem; }
+.hero-3d-portal .model-nav { right: 1.5rem; }
+.hero-3d-portal .loading-indicator { color: #fff; }
+.hero-3d-portal .loading-indicator span { border-top-color: #e6bd71; }
+.hero-3d-portal:focus-visible { outline: 1px solid #72ddd6; outline-offset: -5px; }
 .portal-calibration { transition: opacity .6s ease; }
 .hero-index { z-index: 5; color: rgba(255,255,255,.65); transition: opacity .6s ease; }
 .hero-index span:first-child { color: #e6bd71; }
@@ -338,9 +353,10 @@ h1 em { background: linear-gradient(105deg, var(--coral), #9f50c8 52%, var(--tur
 .hero-focus-toggle .focus-close { display: none; }
 .hero.hero-focus-mode .hero-copy { opacity: 0; filter: blur(2px); transform: translateY(12px); pointer-events: none; }
 .hero.hero-focus-mode .hero-grid, .hero.hero-focus-mode .quantum-field, .hero.hero-focus-mode .hero-index, .hero.hero-focus-mode .hero-slide-meta, .hero.hero-focus-mode .hero-carousel-controls, .hero.hero-focus-mode .hero-stamp, .hero.hero-focus-mode .portal-calibration { opacity: 0; pointer-events: none; }
-.hero.hero-focus-mode .hero-slide::after { opacity: .12; }
+.hero.hero-focus-mode .hero-slide::after, .hero.hero-focus-mode .hero-3d-portal .viewer-wrap::after { opacity: .12; }
 .hero.hero-focus-mode::after { opacity: .12; }
 .hero.hero-focus-mode .hero-slide img { filter: saturate(.98) contrast(1.02); }
+.hero.hero-focus-mode .hero-3d-portal .viewer-topline, .hero.hero-focus-mode .hero-3d-portal .model-info, .hero.hero-focus-mode .hero-3d-portal .model-actions, .hero.hero-focus-mode .hero-3d-portal .model-nav, .hero.hero-focus-mode .hero-3d-portal .loading-indicator { opacity: 0; pointer-events: none; }
 .hero.hero-focus-mode .focus-open { display: none; }
 .hero.hero-focus-mode .focus-close { display: inline; }
 body.hero-focus-mode .site-header { opacity: .16; }
