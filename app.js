@@ -444,16 +444,35 @@ function showModel(index) {
 
 function initGenerativeAudio() {
   const button = document.getElementById("sound-toggle");
+  const muteButton = document.getElementById("sound-mute");
+  const volumeControl = document.getElementById("sound-volume");
+  const flowControl = document.getElementById("sound-flow");
+  const pulseControl = document.getElementById("sound-pulse");
   if (!button) return;
   let context;
-  let master;
+  let output;
+  let filter;
+  let lfo;
+  let lfoGain;
   let timer;
   let playing = false;
+  let muted = false;
   let initialized = false;
   let root;
   let fifth;
   let shimmer;
   const notes = [110, 123.47, 146.83, 164.81, 185, 220];
+
+  const volumeLevel = () => .05 + (Number(volumeControl.value) / 100) * .3;
+  const targetLevel = () => playing && !muted ? volumeLevel() : 0;
+
+  const setOutput = (duration = .35) => {
+    if (!output || !context) return;
+    const now = context.currentTime;
+    output.gain.cancelScheduledValues(now);
+    output.gain.setValueAtTime(output.gain.value, now);
+    output.gain.linearRampToValueAtTime(targetLevel(), now + duration);
+  };
 
   const createVoice = (frequency, type, gainValue, detune = 0) => {
     const oscillator = context.createOscillator();
@@ -462,37 +481,48 @@ function initGenerativeAudio() {
     oscillator.frequency.value = frequency;
     oscillator.detune.value = detune;
     gain.gain.value = gainValue;
-    oscillator.connect(gain).connect(master);
+    oscillator.connect(gain).connect(filter);
     oscillator.start();
     return { oscillator, gain };
   };
 
   const start = async () => {
-    context ||= new (window.AudioContext || window.webkitAudioContext)();
+    const AudioEngine = window.AudioContext || window.webkitAudioContext;
+    if (!AudioEngine) {
+      button.querySelector("span").textContent = "Audio N/A";
+      return;
+    }
+    context ||= new AudioEngine();
     await context.resume();
     if (initialized) {
-      master.gain.cancelScheduledValues(context.currentTime);
-      master.gain.setValueAtTime(master.gain.value, context.currentTime);
-      master.gain.linearRampToValueAtTime(.09, context.currentTime + 1.8);
+      setOutput(1.2);
       scheduleEvolution();
       return;
     }
     initialized = true;
-    master = context.createGain();
-    master.connect(context.destination);
-    master.gain.setValueAtTime(0, context.currentTime);
-    master.gain.linearRampToValueAtTime(.09, context.currentTime + 2.5);
+    output = context.createGain();
+    filter = context.createBiquadFilter();
+    const compressor = context.createDynamicsCompressor();
+    filter.type = "lowpass";
+    filter.frequency.value = 1250;
+    filter.Q.value = .7;
+    compressor.threshold.value = -18;
+    compressor.knee.value = 16;
+    compressor.ratio.value = 4;
+    output.gain.value = 0;
+    filter.connect(compressor).connect(output).connect(context.destination);
 
-    root = createVoice(55, "sine", .34);
-    fifth = createVoice(82.41, "triangle", .12, -4);
-    shimmer = createVoice(220, "sine", .025, 7);
-    const lfo = context.createOscillator();
-    const lfoGain = context.createGain();
-    lfo.frequency.value = .075;
-    lfoGain.gain.value = .018;
-    lfo.connect(lfoGain).connect(master.gain);
+    root = createVoice(55, "sine", .52);
+    fifth = createVoice(82.41, "triangle", .22, -4);
+    shimmer = createVoice(220, "sine", .075, 7);
+    lfo = context.createOscillator();
+    lfoGain = context.createGain();
+    lfo.frequency.value = .08;
+    lfoGain.gain.value = 380;
+    lfo.connect(lfoGain).connect(filter.frequency);
     lfo.start();
 
+    setOutput(1.1);
     scheduleEvolution();
   };
 
@@ -504,20 +534,18 @@ function initGenerativeAudio() {
       shimmer.oscillator.frequency.exponentialRampToValueAtTime(next, now + 4);
       fifth.oscillator.detune.linearRampToValueAtTime((Math.random() - .5) * 12, now + 5);
       root.gain.gain.linearRampToValueAtTime(.25 + Math.random() * .12, now + 6);
-    }, 5500);
+    }, 8500 - Number(flowControl.value) * 55);
   };
 
   const stop = () => {
     clearInterval(timer);
-    if (master && context) {
-      master.gain.cancelScheduledValues(context.currentTime);
-      master.gain.linearRampToValueAtTime(0, context.currentTime + 1.2);
-    }
+    setOutput(.8);
   };
 
   const setPlaying = async (nextPlaying) => {
     playing = nextPlaying;
     button.classList.toggle("active", playing);
+    document.getElementById("sound-console")?.classList.toggle("active", playing);
     button.setAttribute("aria-pressed", String(playing));
     button.querySelector("span").textContent = playing ? "PsyChill ON" : "PsyChill";
     if (playing) await start();
@@ -526,6 +554,25 @@ function initGenerativeAudio() {
 
   button.addEventListener("click", async () => {
     await setPlaying(!playing);
+  });
+
+  muteButton?.addEventListener("click", async () => {
+    if (!initialized) await setPlaying(true);
+    muted = !muted;
+    muteButton.classList.toggle("active", muted);
+    muteButton.setAttribute("aria-pressed", String(muted));
+    muteButton.textContent = muted ? "Muted" : "Mute";
+    setOutput(.25);
+  });
+
+  volumeControl?.addEventListener("input", () => setOutput(.08));
+  flowControl?.addEventListener("input", () => {
+    if (playing) scheduleEvolution();
+  });
+  pulseControl?.addEventListener("input", () => {
+    if (!lfo || !context) return;
+    lfo.frequency.setTargetAtTime(.025 + Number(pulseControl.value) * .003, context.currentTime, .25);
+    lfoGain.gain.setTargetAtTime(180 + Number(pulseControl.value) * 6, context.currentTime, .3);
   });
 
   const beginOnFirstGesture = async (event) => {

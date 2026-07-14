@@ -85,9 +85,17 @@
         <i aria-hidden="true"></i>
       </button>
 
-      <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="false" aria-label="Activar paisaje sonoro generativo PsyChill">
-        <i aria-hidden="true"><b></b><b></b><b></b></i><span>PsyChill</span>
-      </button>
+      <div class="sound-console" id="sound-console">
+        <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="false" aria-label="Activar paisaje sonoro generativo PsyChill">
+          <i aria-hidden="true"><b></b><b></b><b></b></i><span>PsyChill</span>
+        </button>
+        <div class="sound-controls" aria-label="Controles del paisaje sonoro">
+          <button class="sound-mute" id="sound-mute" type="button" aria-pressed="false">Mute</button>
+          <label><span>Vol</span><input id="sound-volume" type="range" min="0" max="100" value="62" aria-label="Volumen"></label>
+          <label><span>Flow</span><input id="sound-flow" type="range" min="0" max="100" value="45" aria-label="Densidad sonora"></label>
+          <label><span>Pulse</span><input id="sound-pulse" type="range" min="0" max="100" value="35" aria-label="Pulso sonoro"></label>
+        </div>
+      </div>
 
       <div class="hero-index" aria-hidden="true">
         <span>JX—01</span>
@@ -261,6 +269,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-  <script src="app.js?v=3.3"></script>
+  <script src="app.js?v=3.4"></script>
 </body>
 </html>
