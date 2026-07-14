@@ -62,6 +62,47 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
 
+function initHeroCarousel() {
+  const carousel = document.getElementById("hero-carousel");
+  if (!carousel) return;
+  const slides = [...carousel.querySelectorAll(".hero-slide")];
+  const dotsWrap = carousel.querySelector(".hero-dots");
+  let active = 0;
+  let timer;
+
+  const dots = slides.map((slide, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = `hero-dot${index === 0 ? " active" : ""}`;
+    dot.setAttribute("aria-label", `Ver proyecto ${index + 1}`);
+    dot.addEventListener("click", () => show(index, true));
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+
+  function show(index, restart = false) {
+    active = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle("active", i === active));
+    dots.forEach((dot, i) => dot.classList.toggle("active", i === active));
+    if (restart) start();
+  }
+
+  function start() {
+    clearInterval(timer);
+    timer = setInterval(() => show(active + 1), 5200);
+  }
+
+  carousel.querySelector(".hero-prev").addEventListener("click", () => show(active - 1, true));
+  carousel.querySelector(".hero-next").addEventListener("click", () => show(active + 1, true));
+  carousel.addEventListener("mouseenter", () => clearInterval(timer));
+  carousel.addEventListener("mouseleave", start);
+  carousel.addEventListener("focusin", () => clearInterval(timer));
+  carousel.addEventListener("focusout", start);
+  start();
+}
+
+initHeroCarousel();
+
 function buildModelNavigation() {
   const nav = document.getElementById("model-nav");
   MODELS.forEach((model, index) => {

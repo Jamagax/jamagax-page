@@ -12,7 +12,7 @@
   <meta property="og:image" content="https://jamagax.dimensionn.xyz/assets/javier-cnc.jpg">
   <title>Jamagax Studio — Diseño computacional desde Tulum</title>
   <link rel="canonical" href="https://jamagax.dimensionn.xyz/">
-  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="icon" href="assets/Jamagax_Mark_2026.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,9 +23,7 @@
 
   <header class="site-header" id="inicio">
     <a class="brand" href="#inicio" aria-label="Jamagax Studio, inicio">
-      <span class="brand-mark" aria-hidden="true">
-        <span></span><span></span>
-      </span>
+      <span class="brand-image" aria-hidden="true"><img src="assets/Jamagax_Mark_2026.svg" alt=""></span>
       <span class="brand-name">Jamagax <small>Studio</small></span>
     </a>
 
@@ -55,11 +53,29 @@
         </div>
       </div>
 
-      <div class="hero-object reveal" data-delay="1" aria-hidden="true">
-        <div class="orbital orbital-one"></div>
-        <div class="orbital orbital-two"></div>
-        <div class="orbital orbital-three"></div>
-        <div class="core-sphere"></div>
+      <div class="hero-carousel reveal" data-delay="1" id="hero-carousel" aria-label="Proyectos destacados">
+        <div class="hero-slides">
+          <article class="hero-slide active">
+            <img src="assets/projects/mayan-warrior.jpg" alt="Mayan Warrior en Burning Man">
+            <div class="hero-slide-meta"><span>01 · Burning Man</span><strong>Mayan Warrior</strong></div>
+          </article>
+          <article class="hero-slide">
+            <img src="assets/projects/azulik-ev.jpg" alt="Vehículo eléctrico Azulik en Tulum" loading="lazy">
+            <div class="hero-slide-meta"><span>02 · Roth Architecture</span><strong>Azulik EV</strong></div>
+          </article>
+          <article class="hero-slide">
+            <img src="assets/projects/piegatto-chair.jpg" alt="Silla Piegatto impresa en 3D" loading="lazy">
+            <div class="hero-slide-meta"><span>03 · Large-format 3D print</span><strong>Piegatto</strong></div>
+          </article>
+          <article class="hero-slide">
+            <img src="assets/projects/museo-soumaya.jpg" alt="Fachada paramétrica del Museo Soumaya" loading="lazy">
+            <div class="hero-slide-meta"><span>04 · Diseño paramétrico</span><strong>Museo Soumaya</strong></div>
+          </article>
+        </div>
+        <div class="hero-carousel-controls">
+          <div class="hero-dots" aria-label="Seleccionar proyecto"></div>
+          <div><button class="hero-prev" type="button" aria-label="Proyecto anterior">←</button><button class="hero-next" type="button" aria-label="Proyecto siguiente">→</button></div>
+        </div>
         <div class="hero-stamp">Código · Forma · Materia</div>
       </div>
 
@@ -256,7 +272,7 @@
         <a class="contact-link" href="mailto:jamagax@dimensionn.xyz?subject=Nuevo%20proyecto%20para%20Jamagax%20Studio">jamagax@dimensionn.xyz <span>↗</span></a>
       </div>
       <footer>
-        <a class="brand brand-footer" href="#inicio"><span class="brand-mark"><span></span><span></span></span><span class="brand-name">Jamagax <small>Studio</small></span></a>
+        <a class="brand brand-footer" href="#inicio"><span class="brand-image"><img src="assets/Jamagax_Mark_2026.svg" alt=""></span><span class="brand-name">Jamagax <small>Studio</small></span></a>
         <div class="footer-meta"><span>Tulum · México</span><a href="https://dimensionn.xyz">Ecosistema Dimension N ↗</a></div>
         <p>© <span id="year">2026</span> Jamagax Studio</p>
       </footer>

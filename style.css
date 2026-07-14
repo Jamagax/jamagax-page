@@ -26,6 +26,8 @@ button { color: inherit; font: inherit; }
 
 .site-header { position: absolute; z-index: 50; top: 0; left: 0; width: 100%; padding: 1.35rem clamp(1.25rem, 4vw, 4.5rem); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(9,42,63,.11); }
 .brand { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; }
+.brand-image { position: relative; width: 46px; height: 46px; display: block; }
+.brand-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .brand-mark { position: relative; width: 34px; height: 34px; display: block; border: 1px solid var(--ink); border-radius: 50%; transform: rotate(-20deg); }
 .brand-mark span { position: absolute; top: 50%; left: -6px; width: 44px; height: 8px; border: 1.5px solid var(--coral); border-radius: 50%; transform: translateY(-50%) rotate(35deg); }
 .brand-mark span:last-child { border-color: var(--turquoise); transform: translateY(-50%) rotate(-35deg); }
@@ -61,14 +63,27 @@ h1 em, h2 em, blockquote em { color: var(--coral); font-family: Georgia, serif; 
 .text-link { font-family: var(--mono); font-size: .7rem; text-underline-offset: .35rem; }
 .text-link span { color: var(--coral); }
 
-.hero-object { position: relative; z-index: 1; width: min(41vw, 620px); aspect-ratio: 1; margin-inline: auto; filter: drop-shadow(0 40px 35px rgba(9,42,63,.13)); }
-.core-sphere { position: absolute; inset: 21%; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #55d8e6 0 8%, #23418b 35%, #33136d 65%, #df278c 100%); box-shadow: inset -25px -18px 40px rgba(2,7,35,.45), 0 0 70px rgba(116,68,196,.22); }
-.core-sphere::before, .core-sphere::after { content: ""; position: absolute; inset: 7% 18%; border-radius: 50%; background: linear-gradient(130deg, transparent 10%, rgba(255,255,255,.23) 48%, transparent 51%); transform: rotate(35deg); }
-.core-sphere::after { inset: 20% 5%; transform: rotate(-30deg); background: linear-gradient(90deg, transparent, rgba(8,169,165,.35), transparent); }
-.orbital { position: absolute; top: 50%; left: 50%; width: 92%; height: 18%; border-radius: 50%; border: clamp(15px, 2vw, 29px) solid rgba(255,63,148,.78); transform: translate(-50%, -50%) rotate(-28deg); box-shadow: inset 0 0 0 5px rgba(255,180,95,.35); }
-.orbital-two { width: 86%; height: 16%; border-color: rgba(8,196,220,.7); transform: translate(-50%, -50%) rotate(38deg); }
-.orbital-three { width: 90%; height: 13%; border-color: rgba(116,68,196,.75); transform: translate(-50%, -50%) rotate(-68deg); }
+.hero-carousel { position: relative; z-index: 2; width: min(43vw, 650px); aspect-ratio: 4 / 5; max-height: 72vh; margin-inline: auto; overflow: hidden; background: var(--ink); box-shadow: 0 35px 70px rgba(9,42,63,.2); }
+.hero-slides, .hero-slide { position: absolute; inset: 0; }
+.hero-slide { opacity: 0; transform: scale(1.035); transition: opacity .8s ease, transform 1.1s cubic-bezier(.2,.7,.2,1); pointer-events: none; }
+.hero-slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+.hero-slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(2,22,34,.82), transparent 45%, rgba(2,22,34,.08)); }
+.hero-slide img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.hero-slide:nth-child(1) img { object-position: center 35%; }
+.hero-slide:nth-child(2) img { object-position: center; }
+.hero-slide:nth-child(3) img { object-position: 58% center; }
+.hero-slide-meta { position: absolute; z-index: 2; left: 1.5rem; right: 1.5rem; bottom: 5.2rem; color: white; }
+.hero-slide-meta span { display: block; margin-bottom: .65rem; color: #87ddd6; font-family: var(--mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+.hero-slide-meta strong { font-size: clamp(2rem, 3.5vw, 3.8rem); font-weight: 300; letter-spacing: -.06em; }
+.hero-carousel-controls { position: absolute; z-index: 3; right: 1.3rem; bottom: 1.25rem; left: 1.3rem; display: flex; align-items: center; justify-content: space-between; }
+.hero-dots { display: flex; gap: .55rem; }
+.hero-dot { width: 22px; height: 2px; padding: 0; border: 0; background: rgba(255,255,255,.4); cursor: pointer; transition: .3s; }
+.hero-dot.active { width: 42px; background: var(--coral); }
+.hero-carousel-controls > div:last-child { display: flex; gap: .35rem; }
+.hero-prev, .hero-next { width: 2.4rem; height: 2.4rem; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; color: white; background: rgba(5,30,48,.38); cursor: pointer; transition: .2s; }
+.hero-prev:hover, .hero-next:hover { background: var(--coral); border-color: var(--coral); }
 .hero-stamp { position: absolute; right: 0; bottom: 8%; padding: .65rem 1rem; border-radius: 99px; background: rgba(250,248,243,.75); backdrop-filter: blur(10px); font-family: var(--mono); font-size: .6rem; text-transform: uppercase; letter-spacing: .08em; }
+.hero-carousel .hero-stamp { top: 1rem; right: 1rem; bottom: auto; z-index: 3; color: var(--ink); }
 .hero-index { position: absolute; bottom: 2rem; right: clamp(1.25rem, 4vw, 4.5rem); left: clamp(1.25rem, 4vw, 4.5rem); display: flex; align-items: center; gap: 1rem; font-family: var(--mono); font-size: .6rem; text-transform: uppercase; letter-spacing: .12em; }
 .index-line { flex: 1; height: 1px; background: var(--line); }
 
@@ -234,7 +249,7 @@ h1 em, h2 em, blockquote em { color: var(--coral); font-family: Georgia, serif; 
   .nav-cta { margin-top: auto; font-size: 1rem; }
   .hero { grid-template-columns: 1fr; padding-top: 8rem; padding-bottom: 5rem; }
   .hero-copy { z-index: 3; }
-  .hero-object { position: absolute; right: -17vw; bottom: 9vh; width: 62vw; opacity: .78; }
+  .hero-carousel { position: absolute; right: -12vw; bottom: 7vh; width: 58vw; opacity: .8; }
   .hero-intro, .hero-actions { margin-left: 0; max-width: 480px; }
   .intro-content, .services-heading, .method-grid, .founder, .work-heading, .systems { grid-template-columns: 1fr; }
   .intro-side { max-width: 600px; margin-top: 3rem; }
@@ -257,7 +272,8 @@ h1 em, h2 em, blockquote em { color: var(--coral); font-family: Georgia, serif; 
   .hero { align-items: start; }
   .hero-intro { font-size: .92rem; max-width: 80%; }
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 1.2rem; }
-  .hero-object { right: -31vw; bottom: 12vh; width: 86vw; opacity: .58; }
+  .hero-carousel { right: -37vw; bottom: 8vh; width: 86vw; opacity: .58; }
+  .hero-slide-meta, .hero-carousel-controls, .hero-carousel .hero-stamp { display: none; }
   .hero-index span:last-child { display: none; }
   .section-label { margin-bottom: 3.2rem; }
   .intro-content br { display: none; }

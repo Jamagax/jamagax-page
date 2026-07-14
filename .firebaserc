@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "nsocial-dimn"
+  },
+  "targets": {
+    "nsocial-dimn": {
+      "hosting": {
+        "jamagax": [
+          "jamagax-studio"
+        ]
+      }
+    }
+  }
+}
