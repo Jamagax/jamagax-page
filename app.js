@@ -47,18 +47,20 @@ const TRANSLATIONS = {
   "Afinamos con": "We refine",
   "intención": "matter",
   "la materia.": "with intention.",
-  "Diseño computacional, modelado orgánico/paramétrico y desarrollo con inteligencia artificial.": "Computational design, organic/parametric modeling and artificial intelligence development.",
+  "Transmisión JX—001": "Transmission JX—001",
+  "Señal estable": "Stable signal",
+  "Diseño computacional, modelado orgánico/paramétrico y desarrollo con inteligencia artificial para traducir patrones, datos e intuiciones en materia.": "Computational design, organic/parametric modeling and artificial intelligence development to translate patterns, data and intuition into matter.",
   "Explorar el estudio": "Explore the studio",
   "Cuéntanos tu idea": "Tell us your idea",
   "Proyectos destacados": "Featured projects",
   "Diseño paramétrico": "Parametric design",
-  "Código · Forma · Materia": "Code · Form · Matter",
+  "Señal · Código · Forma · Materia": "Signal · Code · Form · Matter",
   "Diseño computacional": "Computational design",
   "El estudio": "The studio",
-  "Hacemos visible lo que": "We make visible what",
-  "todavía no existe.": "does not yet exist.",
+  "Traducimos aquello que": "We translate what",
+  "aún no tiene forma.": "has not yet taken form.",
   "Jamagax Studio es el laboratorio creativo de": "Jamagax Studio is the creative laboratory of",
-  ". Cerramos la brecha entre el diseño algorítmico y la manufactura industrial: del primer trazo al archivo que entiende la máquina.": ". We bridge algorithmic design and industrial manufacturing—from the first sketch to a file the machine can understand.",
+  ": una interfaz entre información, geometría y materia. Convertimos patrones, fuerzas y datos en sistemas que pueden verse, probarse y fabricarse.": ": an interface between information, geometry and matter. We turn patterns, forces and data into systems that can be seen, tested and fabricated.",
   "Desde Tulum colaboramos con arquitectos, artistas, desarrolladores y marcas en proyectos que requieren geometría no estándar, racionalización y control real de producción.": "From Tulum, we collaborate with architects, artists, developers and brands on projects requiring non-standard geometry, rationalization and true production control.",
   "Años entre diseño y fabricación digital": "Years spanning design and digital fabrication",
   "Piezas CNC racionalizadas para Mayan Warrior": "CNC parts rationalized for Mayan Warrior",
@@ -69,7 +71,7 @@ const TRANSLATIONS = {
   "Fue Fab Lab Manager y Director de Producción en Roth Architecture–Azulik, líder de diseño computacional para Mayan Warrior y profesor en Ibero, CENTRO, Anáhuac y Tecnológico de Monterrey.": "Former Fab Lab Manager and Production Director at Roth Architecture–Azulik, computational design lead for Mayan Warrior, and professor at Ibero, CENTRO, Anáhuac and Tecnológico de Monterrey.",
   "CV en español": "CV in Spanish",
   "Portafolio completo": "Full portfolio",
-  "Casos seleccionados": "Selected work",
+  "Evidencias materializadas": "Materialized evidence",
   "Ideas complejas.": "Complex ideas.",
   "Realidad precisa.": "Precise reality.",
   "Una trayectoria que cruza arquitectura, arte monumental, fabricación industrial, producto e interfaces sensibles.": "A body of work spanning architecture, monumental art, industrial fabrication, product design and responsive interfaces.",
@@ -87,15 +89,15 @@ const TRANSLATIONS = {
   "Interfaz de audio que convierte las frecuencias electromagnéticas de motores paso a paso en sonido de 8 bits.": "An audio interface that turns the electromagnetic frequencies of stepper motors into 8-bit sound.",
   "Sensores capacitivos y audio generativo para transformar el impacto físico de gotas de agua en música.": "Capacitive sensors and generative audio transform the physical impact of water droplets into music.",
   "Estación meteorológica autónoma financiada por CONACYT para telemetría y registro climático en lugares remotos.": "A CONACYT-funded autonomous weather station for telemetry and climate recording in remote locations.",
-  "Archivo interactivo": "Interactive archive",
-  "Geometrías en proceso": "Geometries in progress",
-  "Explora los modelos: arrastra para rotar y usa la rueda para acercarte.": "Explore the models: drag to rotate and use the wheel to zoom.",
-  "Archivo digital": "Digital archive",
+  "Archivo extradimensional": "Extradimensional archive",
+  "Geometrías emergentes": "Emerging geometries",
+  "Explora cómo la información toma cuerpo: arrastra para rotar y usa la rueda para acercarte.": "Explore how information takes form: drag to rotate and use the wheel to zoom.",
+  "Señal materializada": "Materialized signal",
   "Cargando geometría": "Loading geometry",
-  "Capacidades": "Capabilities",
+  "Operaciones de transmutación": "Transmutation operations",
   "Del concepto": "From concept",
   "a la materia.": "to matter.",
-  "Nos integramos donde el proyecto necesita pensamiento geométrico, visualización rigurosa o una ruta clara de fabricación.": "We join projects wherever they need geometric thinking, rigorous visualization or a clear path to fabrication.",
+  "Interpretamos información compleja y la conducimos por una cadena precisa: intuición, geometría, simulación y fabricación.": "We interpret complex information and guide it through a precise chain: intuition, geometry, simulation and fabrication.",
   "Diseño computacional y orgánico": "Computational and organic design",
   "Form-finding, sistemas paramétricos, simulación física y herramientas a medida para controlar geometrías complejas.": "Form-finding, parametric systems, physical simulation and custom tools for controlling complex geometries.",
   "Captura de realidad y mallas": "Reality capture and meshes",
@@ -110,11 +112,11 @@ const TRANSLATIONS = {
   "de las": "from the",
   "fuerzas que la atraviesan.": "forces that move through it.",
   "Manifiesto Jamagax": "Jamagax Manifesto",
-  "Continuidad, coherencia y transformación como principios para diseñar sistemas vivos.": "Continuity, coherence and transformation as principles for designing living systems.",
-  "Cómo trabajamos": "How we work",
+  "Leemos fuerzas invisibles —continuidad, tensión y flujo— y las convertimos en decisiones geométricas verificables.": "We read invisible forces—continuity, tension and flow—and turn them into verifiable geometric decisions.",
+  "Protocolo de traducción": "Translation protocol",
   "Un proceso": "A process",
   "sin cajas negras.": "without black boxes.",
-  "Cada decisión queda conectada con una intención. El cliente participa, entiende y puede elegir.": "Every decision remains connected to an intention. The client participates, understands and can choose.",
+  "La transformación no es magia: cada decisión conecta una intención con una regla, una geometría y un resultado fabricable.": "Transformation is not magic: every decision connects an intention to a rule, a geometry and a fabricable result.",
   "Concepto y forma": "Concept and form",
   "Definimos el ADN geométrico, las fuerzas y los criterios del proyecto.": "We define the project’s geometric DNA, forces and criteria.",
   "Lógica algorítmica": "Algorithmic logic",
@@ -124,10 +126,10 @@ const TRANSLATIONS = {
   "Directo a máquina": "Direct to machine",
   "Entregamos G-code, DXF anidados, robot paths o archivos de impresión listos.": "We deliver production-ready G-code, nested DXFs, robot paths or print files.",
   "Diseño computacional · DfM · consultoría técnica": "Computational design · DfM · technical consulting",
-  "¿Tienes una geometría difícil,": "Do you have a difficult geometry,",
-  "una idea ambiciosa o ambas?": "an ambitious idea—or both?",
-  "Hagámosla": "Let’s make it",
-  "posible.": "possible.",
+  "¿Tienes una idea que aún": "Do you have an idea that",
+  "no encuentra forma?": "has not yet found its form?",
+  "Traigámosla": "Let’s bring it",
+  "a esta dimensión.": "into this dimension.",
   "Ecosistema Dimension N": "Dimension N ecosystem"
 };
 
@@ -171,11 +173,11 @@ function setLanguage(language, persist = true) {
   });
 
   document.title = currentLanguage === "en"
-    ? "Jamagax Studio — Computational design from Tulum"
-    : "Jamagax Studio — Diseño computacional desde Tulum";
+    ? "Jamagax Studio — Information transformed into matter"
+    : "Jamagax Studio — Información convertida en materia";
   document.querySelector('meta[name="description"]')?.setAttribute("content", currentLanguage === "en"
-    ? "Jamagax Studio transforms complex geometries into buildable systems through computational design, CNC, 3D printing, reality capture and AI."
-    : "Jamagax Studio transforma geometrías complejas en sistemas fabricables mediante diseño computacional, CNC, impresión 3D, captura de realidad e IA.");
+    ? "Jamagax Studio translates patterns, data and intuition into geometries and fabricable systems through computational design, artificial intelligence and digital fabrication."
+    : "Jamagax Studio traduce patrones, datos e intuiciones en geometrías y sistemas fabricables mediante diseño computacional, inteligencia artificial y fabricación digital.");
 
   updateModelCopy(activeModel);
   if (persist) {
