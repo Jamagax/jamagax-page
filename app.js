@@ -1,5 +1,11 @@
 const MODELS = [
   {
+    name: "M-Size Shell",
+    type: { es: "Fabricación aditiva", en: "Additive manufacturing" },
+    description: { es: "Superficie de doble curvatura racionalizada para ventilación, ligereza e impresión 3D.", en: "A double-curved surface rationalized for ventilation, lightness and 3D printing." },
+    source: "jamagax_models/M-Size.glb"
+  },
+  {
     name: "Templo de Morfeo",
     type: { es: "Arquitectura paramétrica", en: "Parametric architecture" },
     description: { es: "Una investigación espacial de arcos continuos, bóvedas fluidas y luz tropical.", en: "A spatial exploration of continuous arches, fluid vaults and tropical light." },
@@ -16,12 +22,6 @@ const MODELS = [
     type: { es: "Sistema constructivo", en: "Building system" },
     description: { es: "Una estructura modular que usa repetición, triangulación y ensamblaje como lenguaje.", en: "A modular structure that uses repetition, triangulation and assembly as its language." },
     source: "jamagax_models/A-Frame.glb"
-  },
-  {
-    name: "M-Size Shell",
-    type: { es: "Fabricación aditiva", en: "Additive manufacturing" },
-    description: { es: "Superficie de doble curvatura racionalizada para ventilación, ligereza e impresión 3D.", en: "A double-curved surface rationalized for ventilation, lightness and 3D printing." },
-    source: "jamagax_models/M-Size.glb"
   }
 ];
 
@@ -406,7 +406,10 @@ function showModel(index) {
   activeModel = (index + MODELS.length) % MODELS.length;
   const token = ++loadToken;
   const loaderUi = document.getElementById("loading-indicator");
+  const loaderLabel = loaderUi?.querySelector("b");
   loaderUi.classList.remove("hidden");
+  loaderUi.classList.remove("error");
+  if (loaderLabel) loaderLabel.textContent = currentLanguage === "en" ? "Loading geometry · 0%" : "Cargando geometría · 0%";
   updateModelCopy(activeModel);
 
   new THREE.GLTFLoader().load(
@@ -426,9 +429,91 @@ function showModel(index) {
       frameObject(currentObject);
       loaderUi.classList.add("hidden");
     },
-    undefined,
-    () => loaderUi.classList.add("hidden")
+    (event) => {
+      if (!loaderLabel || !event.total) return;
+      const progress = Math.min(99, Math.round((event.loaded / event.total) * 100));
+      loaderLabel.textContent = `${currentLanguage === "en" ? "Loading geometry" : "Cargando geometría"} · ${progress}%`;
+    },
+    (error) => {
+      console.error("No fue posible cargar el modelo 3D:", MODELS[activeModel].source, error);
+      loaderUi.classList.add("error");
+      if (loaderLabel) loaderLabel.textContent = currentLanguage === "en" ? "Geometry unavailable · try another" : "Geometría no disponible · prueba otra";
+    }
   );
+}
+
+function initGenerativeAudio() {
+  const button = document.getElementById("sound-toggle");
+  if (!button) return;
+  let context;
+  let master;
+  let timer;
+  let playing = false;
+  let initialized = false;
+
+  const createVoice = (frequency, type, gainValue, detune = 0) => {
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    oscillator.type = type;
+    oscillator.frequency.value = frequency;
+    oscillator.detune.value = detune;
+    gain.gain.value = gainValue;
+    oscillator.connect(gain).connect(master);
+    oscillator.start();
+    return { oscillator, gain };
+  };
+
+  const start = async () => {
+    context ||= new (window.AudioContext || window.webkitAudioContext)();
+    await context.resume();
+    if (initialized) {
+      master.gain.cancelScheduledValues(context.currentTime);
+      master.gain.setValueAtTime(master.gain.value, context.currentTime);
+      master.gain.linearRampToValueAtTime(.09, context.currentTime + 1.8);
+      return;
+    }
+    initialized = true;
+    master = context.createGain();
+    master.connect(context.destination);
+    master.gain.setValueAtTime(0, context.currentTime);
+    master.gain.linearRampToValueAtTime(.09, context.currentTime + 2.5);
+
+    const root = createVoice(55, "sine", .34);
+    const fifth = createVoice(82.41, "triangle", .12, -4);
+    const shimmer = createVoice(220, "sine", .025, 7);
+    const lfo = context.createOscillator();
+    const lfoGain = context.createGain();
+    lfo.frequency.value = .075;
+    lfoGain.gain.value = .018;
+    lfo.connect(lfoGain).connect(master.gain);
+    lfo.start();
+
+    const notes = [110, 123.47, 146.83, 164.81, 185, 220];
+    timer = window.setInterval(() => {
+      const now = context.currentTime;
+      const next = notes[Math.floor(Math.random() * notes.length)];
+      shimmer.oscillator.frequency.exponentialRampToValueAtTime(next, now + 4);
+      fifth.oscillator.detune.linearRampToValueAtTime((Math.random() - .5) * 12, now + 5);
+      root.gain.gain.linearRampToValueAtTime(.25 + Math.random() * .12, now + 6);
+    }, 5500);
+  };
+
+  const stop = () => {
+    clearInterval(timer);
+    if (master && context) {
+      master.gain.cancelScheduledValues(context.currentTime);
+      master.gain.linearRampToValueAtTime(0, context.currentTime + 1.2);
+    }
+  };
+
+  button.addEventListener("click", async () => {
+    playing = !playing;
+    button.classList.toggle("active", playing);
+    button.setAttribute("aria-pressed", String(playing));
+    button.querySelector("span").textContent = playing ? "PsyChill ON" : "PsyChill";
+    if (playing) await start();
+    else stop();
+  });
 }
 
 function initViewer() {
@@ -509,3 +594,4 @@ const viewerObserver = new IntersectionObserver((entries, observer) => {
   observer.disconnect();
 }, { rootMargin: "500px 0px" });
 viewerObserver.observe(viewer);
+initGenerativeAudio();

@@ -351,6 +351,16 @@ h1 em { background: linear-gradient(105deg, var(--coral), #9f50c8 52%, var(--tur
 .hero-focus-toggle:hover { color: #fff; background: rgba(3,11,18,.68); }
 .hero-focus-toggle i { width: 5px; height: 5px; border-radius: 50%; background: #62d9d1; box-shadow: 0 0 9px rgba(98,217,209,.8); }
 .hero-focus-toggle .focus-close { display: none; }
+.sound-toggle { position: absolute; z-index: 8; right: clamp(1.25rem,4vw,4.5rem); bottom: 1.45rem; display: flex; align-items: center; gap: .65rem; padding: .55rem .8rem; border: 1px solid rgba(255,255,255,.25); border-radius: 99px; color: rgba(255,255,255,.7); background: rgba(3,11,18,.38); font-family: var(--mono); font-size: .48rem; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; backdrop-filter: blur(8px); }
+.sound-toggle > i { display: flex; align-items: center; gap: 2px; height: 10px; }
+.sound-toggle > i b { width: 1px; height: 4px; background: #62d9d1; transition: height .25s; }
+.sound-toggle.active > i b { animation: sound-wave .8s ease-in-out infinite alternate; }
+.sound-toggle.active > i b:nth-child(2) { animation-delay: -.45s; }
+.sound-toggle.active > i b:nth-child(3) { animation-delay: -.2s; }
+.sound-toggle.active { color: #fff; border-color: rgba(98,217,209,.55); }
+@keyframes sound-wave { to { height: 10px; } }
+.loading-indicator.error { color: #ffad91; }
+.loading-indicator.error span { animation: none; border-color: rgba(255,173,145,.25); border-top-color: #ffad91; }
 .hero.hero-focus-mode .hero-copy { opacity: 0; filter: blur(2px); transform: translateY(12px); pointer-events: none; }
 .hero.hero-focus-mode .hero-grid, .hero.hero-focus-mode .quantum-field, .hero.hero-focus-mode .hero-index, .hero.hero-focus-mode .hero-slide-meta, .hero.hero-focus-mode .hero-carousel-controls, .hero.hero-focus-mode .hero-stamp, .hero.hero-focus-mode .portal-calibration { opacity: 0; pointer-events: none; }
 .hero.hero-focus-mode .hero-slide::after, .hero.hero-focus-mode .hero-3d-portal .viewer-wrap::after { opacity: .12; }
@@ -489,6 +499,7 @@ body.menu-open .site-header .nav-cta { border-color: var(--ink); }
   .hero-slide-meta, .hero-carousel-controls, .hero-carousel .hero-stamp { display: none; }
   .hero-index { display: none; }
   .hero-focus-toggle { right: 1.25rem; bottom: 1.2rem; left: auto; transform: none; }
+  .sound-toggle { right: auto; bottom: 1.2rem; left: 1.25rem; }
   .section-label { margin-bottom: 3.2rem; }
   .intro-content br { display: none; }
   .principles { grid-template-columns: 1fr; }
