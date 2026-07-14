@@ -1,5 +1,11 @@
 const MODELS = [
   {
+    name: "Teseracto Polyhedra",
+    type: { es: "Geometría espacial", en: "Spatial geometry" },
+    description: { es: "Simetría multidimensional, estelaciones y detalle recursivo convertidos en una pieza escultórica.", en: "Multidimensional symmetry, stellations and recursive detail transformed into a sculptural piece." },
+    source: "jamagax_models/Escultura_Polyhedra.glb"
+  },
+  {
     name: "M-Size Shell",
     type: { es: "Fabricación aditiva", en: "Additive manufacturing" },
     description: { es: "Superficie de doble curvatura racionalizada para ventilación, ligereza e impresión 3D.", en: "A double-curved surface rationalized for ventilation, lightness and 3D printing." },
@@ -10,12 +16,6 @@ const MODELS = [
     type: { es: "Arquitectura paramétrica", en: "Parametric architecture" },
     description: { es: "Una investigación espacial de arcos continuos, bóvedas fluidas y luz tropical.", en: "A spatial exploration of continuous arches, fluid vaults and tropical light." },
     source: "jamagax_models/TemploDeMorfeo.glb"
-  },
-  {
-    name: "Escultura Polyhedra",
-    type: { es: "Geometría espacial", en: "Spatial geometry" },
-    description: { es: "Simetría icosaédrica, estelaciones y detalle recursivo convertidos en una pieza escultórica.", en: "Icosahedral symmetry, stellations and recursive detail transformed into a sculptural piece." },
-    source: "jamagax_models/Escultura_Polyhedra.glb"
   },
   {
     name: "A-Frame",
@@ -450,6 +450,10 @@ function initGenerativeAudio() {
   let timer;
   let playing = false;
   let initialized = false;
+  let root;
+  let fifth;
+  let shimmer;
+  const notes = [110, 123.47, 146.83, 164.81, 185, 220];
 
   const createVoice = (frequency, type, gainValue, detune = 0) => {
     const oscillator = context.createOscillator();
@@ -470,6 +474,7 @@ function initGenerativeAudio() {
       master.gain.cancelScheduledValues(context.currentTime);
       master.gain.setValueAtTime(master.gain.value, context.currentTime);
       master.gain.linearRampToValueAtTime(.09, context.currentTime + 1.8);
+      scheduleEvolution();
       return;
     }
     initialized = true;
@@ -478,9 +483,9 @@ function initGenerativeAudio() {
     master.gain.setValueAtTime(0, context.currentTime);
     master.gain.linearRampToValueAtTime(.09, context.currentTime + 2.5);
 
-    const root = createVoice(55, "sine", .34);
-    const fifth = createVoice(82.41, "triangle", .12, -4);
-    const shimmer = createVoice(220, "sine", .025, 7);
+    root = createVoice(55, "sine", .34);
+    fifth = createVoice(82.41, "triangle", .12, -4);
+    shimmer = createVoice(220, "sine", .025, 7);
     const lfo = context.createOscillator();
     const lfoGain = context.createGain();
     lfo.frequency.value = .075;
@@ -488,7 +493,11 @@ function initGenerativeAudio() {
     lfo.connect(lfoGain).connect(master.gain);
     lfo.start();
 
-    const notes = [110, 123.47, 146.83, 164.81, 185, 220];
+    scheduleEvolution();
+  };
+
+  const scheduleEvolution = () => {
+    clearInterval(timer);
     timer = window.setInterval(() => {
       const now = context.currentTime;
       const next = notes[Math.floor(Math.random() * notes.length)];
@@ -506,14 +515,24 @@ function initGenerativeAudio() {
     }
   };
 
-  button.addEventListener("click", async () => {
-    playing = !playing;
+  const setPlaying = async (nextPlaying) => {
+    playing = nextPlaying;
     button.classList.toggle("active", playing);
     button.setAttribute("aria-pressed", String(playing));
     button.querySelector("span").textContent = playing ? "PsyChill ON" : "PsyChill";
     if (playing) await start();
     else stop();
+  };
+
+  button.addEventListener("click", async () => {
+    await setPlaying(!playing);
   });
+
+  const beginOnFirstGesture = async (event) => {
+    if (event.target.closest("#sound-toggle")) return;
+    await setPlaying(true);
+  };
+  document.addEventListener("pointerdown", beginOnFirstGesture, { once: true });
 }
 
 function initViewer() {
